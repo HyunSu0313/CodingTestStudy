@@ -68,14 +68,15 @@ public class P1167 {
             }
         }
     }
-}
 
-class Edge {
-    int e;
-    int value;
+    static class Edge {
+        int e;
+        int value;
 
-    public Edge(int e, int value) {
-        this.e = e;
-        this.value = value;
+        public Edge(int e, int value) {
+            this.e = e;
+            this.value = value;
+        }
     }
 }
+

@@ -3,6 +3,10 @@ package baekjoon.dfsandbfs;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 백준 1697 (BFS 활용)
+ * 숨바꼭질
+ */
 public class P1697 {
     static int[] dx = {-1, 1};
     static boolean[] visited = new boolean[100001];

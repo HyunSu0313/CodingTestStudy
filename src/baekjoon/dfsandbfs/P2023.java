@@ -29,7 +29,7 @@ public class P2023 {
         }
 
         for (int i = 1; i < 10; i++) {
-            if (i % 2 == 0) continue;
+            if (i % 2 == 0 || i == 5) continue;
             if (isPrime(number * 10 + i)) {
                 DFS(number * 10 + i, jarisu + 1);
             }

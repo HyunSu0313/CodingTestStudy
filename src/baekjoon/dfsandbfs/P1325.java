@@ -3,6 +3,10 @@ package baekjoon.dfsandbfs;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 백준 1325 (BFS 활용)
+ * 효율적인 해킹
+ */
 public class P1325 {
 
     static ArrayList<Integer>[] A;
@@ -16,7 +20,6 @@ public class P1325 {
         int M = Integer.parseInt(st.nextToken());
 
         A = new ArrayList[N + 1];
-        visited = new boolean[N + 1];
 
         for (int i = 1; i < N + 1; i++) {
             A[i] = new ArrayList<>();
@@ -33,8 +36,9 @@ public class P1325 {
         List<Node> countList = new ArrayList<>();
 
         for (int i = 1; i < N + 1; i++) {
-            BFS(i);
-
+            visited = new boolean[N + 1];
+            int count = BFS(i);
+            countList.add(new Node(i, count));
         }
 
         Collections.sort(countList);
@@ -48,38 +52,21 @@ public class P1325 {
         }
     }
 
-    static void DFS(int v) {
-        if (visited[v]) {
-            return;
-        }
-
-        visited[v] = true;
-
-        for (int i : A[v]) {
-            if (!visited[i]) {
-                DFS(i);
-            }
-        }
-    }
-
     static int BFS(int v) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(v);
         visited[v] = true;
+        int count = 0;
 
         while (!queue.isEmpty()) {
             int now = queue.poll();
             for (int i : A[now]) {
                 if (!visited[i]) {
                     visited[i] = true;
+                    count++;
                     queue.add(i);
                 }
             }
-        }
-
-        int count = 0;
-        for (int i = 1; i < visited.length; i++) {
-            if (visited[i]) {count++;}
         }
 
         return count;

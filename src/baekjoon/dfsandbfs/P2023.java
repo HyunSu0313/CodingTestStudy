@@ -20,8 +20,8 @@ public class P2023 {
         DFS(7, 1);
     }
 
-    static void DFS(int number, int jarisu) {
-        if (jarisu == N) {
+    static void DFS(int number, int depth) {
+        if (depth == N) {
             if (isPrime(number)) {
                 System.out.println(number);
             }
@@ -31,7 +31,7 @@ public class P2023 {
         for (int i = 1; i < 10; i++) {
             if (i % 2 == 0 || i == 5) continue;
             if (isPrime(number * 10 + i)) {
-                DFS(number * 10 + i, jarisu + 1);
+                DFS(number * 10 + i, depth + 1);
             }
         }
     }

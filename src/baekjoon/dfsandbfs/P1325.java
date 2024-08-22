@@ -33,13 +33,8 @@ public class P1325 {
         List<Node> countList = new ArrayList<>();
 
         for (int i = 1; i < N + 1; i++) {
-            int count = 0;
-            DFS(i);
-            for (int j = 1; j < N + 1; j++) {
-                if (visited[j]) {count++;}
-            }
-            countList.add(new Node(i, count));
-            Arrays.fill(visited, false);
+            BFS(i);
+
         }
 
         Collections.sort(countList);
@@ -65,6 +60,29 @@ public class P1325 {
                 DFS(i);
             }
         }
+    }
+
+    static int BFS(int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(v);
+        visited[v] = true;
+
+        while (!queue.isEmpty()) {
+            int now = queue.poll();
+            for (int i : A[now]) {
+                if (!visited[i]) {
+                    visited[i] = true;
+                    queue.add(i);
+                }
+            }
+        }
+
+        int count = 0;
+        for (int i = 1; i < visited.length; i++) {
+            if (visited[i]) {count++;}
+        }
+
+        return count;
     }
 
     static class Node implements Comparable<Node> {

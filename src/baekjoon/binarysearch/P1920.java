@@ -3,6 +3,9 @@ package baekjoon.binarysearch;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 백준 1920 (이분 탐색 기초)
+ */
 public class P1920 {
 
     public static void main(String[] args) throws IOException {

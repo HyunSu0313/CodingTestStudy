@@ -41,7 +41,7 @@ public class P2667 {
                 if (!visited[i][j] && A[i][j] != 0) {
                     count++;
                     list.add(DFS(i, j));
-//                    list.add(DFS(i, j));
+//                    list.add(BFS(i, j));
                 }
             }
         }

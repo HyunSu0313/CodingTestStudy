@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * 백준 2667 (BFS 활용)
+ * 백준 2667 (DFS, BFS 활용)
  * 단지 번호 붙이기
  */
 public class P2667 {
@@ -40,7 +40,8 @@ public class P2667 {
             for (int j = 1; j < N + 1; j++) {
                 if (!visited[i][j] && A[i][j] != 0) {
                     count++;
-                    list.add(BFS(i, j));
+                    list.add(DFS(i, j));
+//                    list.add(DFS(i, j));
                 }
             }
         }
@@ -59,6 +60,31 @@ public class P2667 {
             System.out.println(j);
         }
 
+    }
+
+    static int DFS(int i, int j) {
+        Deque<int[]> stack = new ArrayDeque<>();
+        stack.push(new int[] {i, j});
+        visited[i][j] = true;
+        int count = 1;
+
+        while (!stack.isEmpty()) {
+            int[] now = stack.pop();
+            for (int k = 0; k < 4; k++) {
+                int x = now[0] + dx[k];
+                int y = now[1] + dy[k];
+
+                if (x > 0 && y > 0 && x < N + 1 && y < N + 1) {
+                    if (A[x][y] != 0 && !visited[x][y]) {
+                        count++;
+                        visited[x][y] = true;
+                        stack.push(new int[] {x, y});
+                    }
+                }
+            }
+        }
+
+        return count;
     }
 
     static int BFS(int i, int j) {

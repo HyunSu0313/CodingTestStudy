@@ -4,6 +4,10 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Arrays;
 
+/**
+ * 백준 1715 (greedy 활용 최소 힙)
+ * 카드 묶기
+ */
 public class P1715 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

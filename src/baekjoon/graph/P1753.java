@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /**
- * 백준 1753 (다익스트라 알고리즘 기본)
+ * 백준 1753 (Dijkstra Algorithm 기본)
  */
 public class P1753 {
     static int V,E,K;

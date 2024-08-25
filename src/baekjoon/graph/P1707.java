@@ -3,13 +3,11 @@ package baekjoon.graph;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.StringTokenizer;
 
 /**
- * 백준 1707 (그래프 활용)
+ * 백준 1707 (그래프 + DFS 활용)
  * 이분 그래프 판별
  */
 public class P1707 {
@@ -70,6 +68,5 @@ public class P1707 {
                 isEven = false;
             }
         }
-
     }
 }

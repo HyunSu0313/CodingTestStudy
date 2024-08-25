@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/**
+ * 백준 1916 (Dijkstra 기본)
+ * 최소 비용 구하기
+ */
 public class P1916 {
     static ArrayList<Edge>[] A;
     static int[] distance;

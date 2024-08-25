@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.LinkedList;
 
+/**
+ * Programmers 49189 (BFS 활용)
+ * 가장 먼 노드
+ */
 class P49189 {
     static ArrayList<Integer>[] A;
     static boolean[] visited;

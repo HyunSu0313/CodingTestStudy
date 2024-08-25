@@ -8,10 +8,10 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /**
- * 백준 1916 (Dijkstra 기본)
- * 최소 비용 구하기
+ * 백준 1854 (Dijkstra 활용)
+ * k번째 최단 경로 구하기
  */
-public class P1916 {
+public class P1854 {
     static ArrayList<Edge>[] A;
     static int[] distance;
     static boolean[] visited;
@@ -22,6 +22,8 @@ public class P1916 {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
 
         A = new ArrayList[N + 1];
         distance = new int[N + 1];
@@ -35,9 +37,6 @@ public class P1916 {
             distance[i] = Integer.MAX_VALUE;
         }
 
-        st = new StringTokenizer(br.readLine());
-        M = Integer.parseInt(st.nextToken());
-
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
@@ -47,13 +46,11 @@ public class P1916 {
             A[start].add(new Edge(end, value));
         }
 
-        st = new StringTokenizer(br.readLine());
-        int startIndex = Integer.parseInt(st.nextToken());
-        int endIndex = Integer.parseInt(st.nextToken());
+        Dijkstra(1);
 
-        Dijkstra(startIndex);
-
-        System.out.println(distance[endIndex]);
+        for (int i = 1; i < N + 1; i++) {
+            System.out.println(distance[i]);
+        }
     }
 
     static void Dijkstra(int i) {
@@ -65,14 +62,17 @@ public class P1916 {
             Edge now = pq.poll();
             int nowIndex = now.index;
 
-            if (!visited[nowIndex]) {
-                visited[nowIndex] = true;
+            if(visited[nowIndex]) continue;
+            visited[nowIndex] = true;
 
-                for (Edge e : A[nowIndex]) {
-                    if (!visited[e.index] && distance[e.index] > distance[nowIndex] + e.value) {
-                        distance[e.index] = distance[nowIndex] + e.value;
-                        pq.add(new Edge(e.index, distance[e.index]));
-                    }
+            for (int k = 0; k < A[nowIndex].size(); k++) {
+                Edge tmp = A[nowIndex].get(k);
+                int next = tmp.index;
+                int value = tmp.value;
+
+                if (distance[next] > value + distance[nowIndex]) {
+                    distance[next] = value + distance[nowIndex];
+                    pq.add(new Edge(next, distance[next]));
                 }
             }
         }

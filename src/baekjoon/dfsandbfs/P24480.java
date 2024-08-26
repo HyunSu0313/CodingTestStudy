@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.StringTokenizer;
 
 /**
- * 백준 24479 (DFS 기본)
+ * 백준 24480 (DFS 기본)
  */
 public class P24480 {
 

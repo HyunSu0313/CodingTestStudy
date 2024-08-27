@@ -48,18 +48,18 @@ public class P1197_Prim {
 
     static int Prim(int start) {
         int result = 0;
-        int edgesUsed = 0;
+        int useEdge = 0;
 
         pq.add(new Edge(start, 0));
 
-        while (!pq.isEmpty() && edgesUsed < A.length - 1) {
+        while (!pq.isEmpty() && useEdge < A.length - 1) {
             Edge now = pq.poll();
 
             if (visited[now.index]) continue;
 
             visited[now.index] = true;
             result += now.value;
-            edgesUsed++;
+            useEdge++;
 
             for (Edge e : A[now.index]) {
                 if (!visited[e.index]) {

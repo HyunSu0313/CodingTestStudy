@@ -20,18 +20,18 @@ public class P1197_Prim {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
+        int V = Integer.parseInt(st.nextToken());
+        int E = Integer.parseInt(st.nextToken());
 
-        A = new ArrayList[N + 1];
-        visited = new boolean[N + 1];
+        A = new ArrayList[V + 1];
+        visited = new boolean[V + 1];
         pq = new PriorityQueue<>();
 
-        for (int i = 1; i <= N; i++) {
+        for (int i = 1; i <= V; i++) {
             A[i] = new ArrayList<>();
         }
 
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < E; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
@@ -41,29 +41,29 @@ public class P1197_Prim {
             A[end].add(new Edge(start, value));
         }
 
-        int result = Prim(1); // 시작 정점은 1로 설정
+        int result = Prim(1);
 
         System.out.println(result);
     }
 
     static int Prim(int start) {
         int result = 0;
-        int useEdge = 0;
+        int edgesUsed = 0;
 
         pq.add(new Edge(start, 0));
 
-        while (!pq.isEmpty() && useEdge < A.length - 2) {
+        while (!pq.isEmpty() && edgesUsed < A.length - 1) {
             Edge now = pq.poll();
 
-            if (!visited[now.index]) {
-                visited[now.index] = true;
-                result += now.value;
-                useEdge++;
+            if (visited[now.index]) continue;
 
-                for (Edge edge : A[now.index]) {
-                    if (!visited[edge.index]) {
-                        pq.add(edge);
-                    }
+            visited[now.index] = true;
+            result += now.value;
+            edgesUsed++;
+
+            for (Edge e : A[now.index]) {
+                if (!visited[e.index]) {
+                    pq.add(e);
                 }
             }
         }
@@ -75,9 +75,9 @@ public class P1197_Prim {
         int index;
         int value;
 
-        public Edge(int target, int weight) {
-            this.index = target;
-            this.value = weight;
+        public Edge(int index, int value) {
+            this.index = index;
+            this.value = value;
         }
 
         @Override

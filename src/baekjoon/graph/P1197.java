@@ -37,6 +37,12 @@ public class P1197 {
             pq.add(new pNode(start, end, value));
         }
 
+        int result = Kruskal(N);
+
+        System.out.println(result);
+    }
+
+    private static int Kruskal(int N) {
         int useEdge = 0;
         int result = 0;
 
@@ -48,8 +54,7 @@ public class P1197 {
                 useEdge++;
             }
         }
-
-        System.out.println(result);
+        return result;
     }
 
     static void Union(int i, int j) {

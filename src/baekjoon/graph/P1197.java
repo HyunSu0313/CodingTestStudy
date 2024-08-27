@@ -42,7 +42,7 @@ public class P1197 {
         System.out.println(result);
     }
 
-    private static int Kruskal(int N) {
+    static int Kruskal(int N) {
         int useEdge = 0;
         int result = 0;
 

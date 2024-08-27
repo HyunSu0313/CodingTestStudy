@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 /**
  * 백준 1197 (최소 신장 트리 기초)
+ * Kruskal Algorithm
  */
 public class P1197 {
     static int[] A;

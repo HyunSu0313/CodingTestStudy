@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- * 백준 24479 (BFS 기본)
+ * 백준 24444 (BFS 기본)
  */
 public class P24444 {
 

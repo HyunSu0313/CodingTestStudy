@@ -7,10 +7,10 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /**
- * 백준 1197 (최소 신장 트리 기초)
+ * 백준 1197 (최소 신장 트리(MST) 기초)
  * Kruskal Algorithm
  */
-public class P1197 {
+public class P1197_Kruskal {
     static int[] A;
     static PriorityQueue<pNode> pq;
 

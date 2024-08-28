@@ -10,17 +10,26 @@ public class P14621 {
     static int[] A;
     static String[] S;
     static PriorityQueue<Node> pq = new PriorityQueue<>();
+    static int N, M;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
     }
 
     static void Kruskal(int i) {
+        int result = 0;
+        int useEdge = 0;
 
+        while (useEdge < N - 1) {
+            Node now = pq.poll();
+            if (Find(now.start) != Find(now.end) && S[now.start] != S[now.end]) {
+                Union(now.start, now.end);
+            }
+        }
     }
 
     static void Union(int i, int j) {
@@ -41,13 +50,11 @@ public class P14621 {
         int start;
         int end;
         int value;
-        int s;
 
-        public Node(int start, int end, int value, int s) {
+        public Node(int start, int end, int value) {
             this.start = start;
             this.end = end;
             this.value = value;
-            this.s = s;
         }
 
         @Override

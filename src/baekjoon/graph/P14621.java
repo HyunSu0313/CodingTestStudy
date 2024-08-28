@@ -3,10 +3,13 @@ package baekjoon.graph;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/**
+ * 백준 14621 (Kruskal Algorithm 활용)
+ * 나만 안되는 연애
+ */
 public class P14621 {
     static int[] A;
     static String[] S;

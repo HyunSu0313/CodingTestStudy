@@ -3,6 +3,7 @@ package baekjoon.graph;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -18,18 +19,48 @@ public class P14621 {
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
+
+        A = new int[N + 1];
+        S = new String[N + 1];
+
+        for (int i = 0; i < N; i++) {
+            A[i] = i;
+        }
+
+        st = new StringTokenizer(br.readLine());
+
+        for (int i = 1; i < N + 1; i++) {
+            S[i] = st.nextToken();
+        }
+
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            int value = Integer.parseInt(st.nextToken());
+
+            pq.add(new Node(start, end, value));
+        }
+
+        int result = Kruskal(N);
+        System.out.println(result);
     }
 
-    static void Kruskal(int i) {
+    static int Kruskal(int i) {
         int result = 0;
         int useEdge = 0;
 
-        while (useEdge < N - 1) {
+        while (useEdge < i - 1) {
+            if (pq.isEmpty()) return -1;
             Node now = pq.poll();
-            if (Find(now.start) != Find(now.end) && S[now.start] != S[now.end]) {
+            if (Find(now.start) != Find(now.end) && !S[now.start].equals(S[now.end])) {
                 Union(now.start, now.end);
+                result += now.value;
+                useEdge++;
             }
         }
+
+        return result;
     }
 
     static void Union(int i, int j) {

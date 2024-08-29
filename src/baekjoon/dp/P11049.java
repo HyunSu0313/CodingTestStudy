@@ -5,6 +5,8 @@ import java.util.Scanner;
 /**
  * 백준 11049 (DP 활용 예제)
  * 행렬 곱 연산 횟수의 최솟값 구하기
+ * 점화식
+ * M[i][j] = min(M[i][k] + M[k+1][j] + d(i-1)*d(k)*d(j)) (i <= k <= j-1), M[i][j] = 0 (i=j)
  */
 public class P11049 {
     static int N;
@@ -26,7 +28,7 @@ public class P11049 {
         for (int i = 1; i < N + 1; i++) {
             int y = scanner.nextInt();
             int x = scanner.nextInt();
-            M[i] = new Matrix(y, x);
+            M[i] = new Matrix(y, x); // 행렬 순서대로 저장
         }
         System.out.println(execute(1, N));
     }

@@ -8,6 +8,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * 백준 2056 위상정렬
+ * 작업 시간 계산
+ */
 public class P2056 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

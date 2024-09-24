@@ -40,7 +40,6 @@ public class P2637 {
 
         Queue<Integer> queue = new LinkedList<>();
 
-        // 진입 차수가 0인 기본 부품 찾기
         for (int i = 1; i <= N; i++) {
             if (indegree[i] == 0) {
                 queue.offer(i);

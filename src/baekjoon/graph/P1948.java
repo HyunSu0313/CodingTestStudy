@@ -37,6 +37,7 @@ public class P1948 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int startDosi = Integer.parseInt(st.nextToken());
         int endDosi = Integer.parseInt(st.nextToken());
+
         // 위상 정렬
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(startDosi);
@@ -51,6 +52,7 @@ public class P1948 {
                 }
             }
         }
+
         // 위상 정렬 reverse
         int resultCount = 0;
         boolean[] visited = new boolean[N + 1];

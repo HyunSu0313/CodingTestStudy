@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 
 /**
  * 백준 1516 위상정렬
- * 게임 개발하
+ * 게임 개발하기
  */
 public class P1516 {
     public static void main(String[] args) throws IOException {

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * น้มุ 20040 Union-Find
+ */
 public class P20040 {
     static int[] A;
 

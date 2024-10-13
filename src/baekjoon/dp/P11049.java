@@ -28,7 +28,7 @@ public class P11049 {
         for (int i = 1; i < N + 1; i++) {
             int y = scanner.nextInt();
             int x = scanner.nextInt();
-            M[i] = new Matrix(y, x); // 행렬 순서대로 저장
+            M[i] = new Matrix(y, x);
         }
         System.out.println(execute(1, N));
     }

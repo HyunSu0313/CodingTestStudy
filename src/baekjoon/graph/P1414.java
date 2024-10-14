@@ -12,15 +12,16 @@ import java.util.StringTokenizer;
  */
 public class P1414 {
 
-    static int[] parent;
+    static int[] A;
     static int N, sum;
-    static PriorityQueue<Edge> queue;
+    static PriorityQueue<Edge> pq;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+
         N = Integer.parseInt(st.nextToken());
-        queue = new PriorityQueue<>();
+        pq = new PriorityQueue<>();
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
@@ -32,21 +33,21 @@ public class P1414 {
                     temp = c[j] - 'a' + 1;
                 else if (c[j] >= 'A' && c[j] <= 'Z')
                     temp = c[j] - 'A' + 27;
-                sum = sum + temp; // 총 랜선의 길의 저장
-                if (i != j && temp != 0)queue.add(new Edge(i, j, temp));
+                sum = sum + temp;
+                if (i != j && temp != 0) pq.add(new Edge(i, j, temp));
             }
         }
 
-        parent = new int[N];
-        for (int i = 0; i < parent.length; i++) parent[i] = i;
+        A = new int[N];
+        for (int i = 0; i < A.length; i++) A[i] = i;
         int useEdge = 0;
         int result = 0;
 
-        while (!queue.isEmpty()) {
-            Edge now = queue.poll();
-            if (find(now.s) != find(now.e)){
-                union(now.s, now.e);
-                result = result + now.v;
+        while (!pq.isEmpty()) {
+            Edge now = pq.poll();
+            if (Find(now.start) != Find(now.end)){
+                Union(now.start, now.end);
+                result = result + now.value;
                 useEdge++;
             }
         }
@@ -55,26 +56,31 @@ public class P1414 {
         else System.out.println(-1);
     }
 
-    public static void union(int a, int b) {
-        a = find(a); b = find(b);
-        if (a != b) parent[b] = a;
+    public static void Union(int i, int j) {
+        i = Find(i);
+        j = Find(j);
+
+        if (i != j) A[j] = i;
     }
 
-    public static int find(int a) {
-        if (a == parent[a]) return a;
-        else return parent[a] = find(parent[a]);
+    public static int Find(int i) {
+        if (i == A[i]) return i;
+        else return A[i] = Find(A[i]);
     }
 
     static class Edge implements Comparable<Edge> {
-        int s, e, v;
-        Edge(int s, int e, int v) {
-            this.s = s;
-            this.e = e;
-            this.v = v;
+        int start;
+        int end;
+        int value;
+
+        Edge(int start, int end, int value) {
+            this.start = start;
+            this.end = end;
+            this.value = value;
         }
         @Override
         public int compareTo(Edge o) {
-            return this.v - o.v;
+            return this.value - o.value;
         }
     }
 }

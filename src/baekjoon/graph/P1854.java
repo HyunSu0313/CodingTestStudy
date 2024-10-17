@@ -1,9 +1,8 @@
 package baekjoon.graph;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -12,84 +11,81 @@ import java.util.StringTokenizer;
  * k번째 최단 경로 구하기
  */
 public class P1854 {
-    static ArrayList<Edge>[] A;
-    static int[] distance;
-    static boolean[] visited;
-    static int N,M;
+    static final int INF = 100000000;
 
     public static void main(String[] args) throws IOException {
+        int N, M, K;
+        int[][] W = new int[1001][1001];
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
 
-        A = new ArrayList[N + 1];
-        distance = new int[N + 1];
-        visited = new boolean[N + 1];
-
-        for (int i = 1; i < N + 1; i++) {
-            A[i] = new ArrayList<>();
-        }
+        PriorityQueue<Integer>[] distQueue = new PriorityQueue[N + 1];
+        Comparator<Integer> cp = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 < o2 ? 1 : -1;
+            }
+        };
 
         for (int i = 0; i < N + 1; i++) {
-            distance[i] = Integer.MAX_VALUE;
+            distQueue[i] = new PriorityQueue<>(K, cp);
         }
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-            int value = Integer.parseInt(st.nextToken());
-
-            A[start].add(new Edge(end, value));
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
+            W[a][b] = c;
         }
 
-        Dijkstra(1);
-
-        for (int i = 1; i < N + 1; i++) {
-            System.out.println(distance[i]);
-        }
-    }
-
-    static void Dijkstra(int i) {
-        PriorityQueue<Edge> pq = new PriorityQueue<>();
-        pq.add(new Edge(i, 0));
-        distance[i] = 0;
-
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.add(new Node(1, 0));
+        distQueue[1].add(0);
         while (!pq.isEmpty()) {
-            Edge now = pq.poll();
-            int nowIndex = now.index;
-
-            if(visited[nowIndex]) continue;
-            visited[nowIndex] = true;
-
-            for (int k = 0; k < A[nowIndex].size(); k++) {
-                Edge tmp = A[nowIndex].get(k);
-                int next = tmp.index;
-                int value = tmp.value;
-
-                if (distance[next] > value + distance[nowIndex]) {
-                    distance[next] = value + distance[nowIndex];
-                    pq.add(new Edge(next, distance[next]));
+            Node u = pq.poll();
+            for (int adjNode = 1; adjNode < N + 1; adjNode++) {
+                if (W[u.node][adjNode] != 0) {
+                    if (distQueue[adjNode].size() < K) {
+                        distQueue[adjNode].add(u.cost + W[u.node][adjNode]);
+                        pq.add(new Node(adjNode, u.cost + W[u.node][adjNode]));
+                    } else if (distQueue[adjNode].peek() > u.cost + W[u.node][adjNode]) {
+                        distQueue[adjNode].poll();
+                        distQueue[adjNode].add(u.cost + W[u.node][adjNode]);
+                        pq.add(new Node(adjNode, u.cost + W[u.node][adjNode]));
+                    }
                 }
             }
         }
+
+        for (int i = 1; i < N + 1; i++) {
+            if (distQueue[i].size() == K) {
+                bw.write(distQueue[i].peek() + "\n");
+            } else {
+                bw.write(-1 + "\n");
+            }
+        }
+        bw.flush();
     }
 
-    static class Edge implements Comparable<Edge> {
-        int index;
-        int value;
+    static class Node implements Comparable<Node> {
+        int node;
+        int cost;
 
-        public Edge(int index, int value) {
-            this.index = index;
-            this.value = value;
+        public Node(int node, int cost) {
+            this.node = node;
+            this.cost = cost;
         }
 
         @Override
-        public int compareTo(Edge o) {
-            return this.value - o.value;
+        public int compareTo(Node o) {
+            return this.cost < o.cost ? -1 : 1;
         }
     }
 }

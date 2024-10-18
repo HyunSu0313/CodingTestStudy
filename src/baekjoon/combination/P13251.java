@@ -8,8 +8,8 @@ import java.util.StringTokenizer;
 public class P13251 {
     public static void main(String[] args) throws IOException {
         int M, K, T;
-        int D[] = new int[51];
-        double probability[] = new double[51];
+        int[] D = new int[51];
+        double[] probability = new double[51];
         double ans;
 
         T = 0;

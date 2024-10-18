@@ -2,6 +2,9 @@ package baekjoon.dp;
 
 import java.util.Scanner;
 
+/**
+ * 백준 11727 DP 활용
+ */
 public class P11727 {
     static long[] D;
     static long mod = 10007;

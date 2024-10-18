@@ -2,6 +2,9 @@ package baekjoon.dp;
 
 import java.util.Scanner;
 
+/**
+ * 백준 9251 LCS 기본
+ */
 public class P9251 {
     static int[][] D;
 

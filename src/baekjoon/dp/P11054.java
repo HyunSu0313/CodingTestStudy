@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * น้มุ 11054 LIS + LDS
+ */
 public class P11054 {
     static int N;
     static int[] A, increase, decrease, LIS, LDS;
